@@ -43,4 +43,17 @@ public class StringCalculatorTest {
         assertEquals(3, stringCalculator.add("1,2"));
         assertEquals(31, stringCalculator.add("1,2,1,2,2,1,2,2,1,2,2,1,2,2,1,2,2,1,2"));
     }
+
+    @Test
+    @DisplayName("Test New Line")
+    public void testNewLine() {
+        assertEquals(10, stringCalculator.add("1\n2,3\n4"));
+    }
+
+    @Test
+    @DisplayName("Test Different Delimiters")
+    public void testDifferentDelimiters() {
+        assertEquals(15, stringCalculator.add("//;\n1;2;3;4;5"));
+    }
+
 }
