@@ -1,20 +1,25 @@
 package com.tdd.assessment;
 
-
 import org.apache.commons.lang3.StringUtils;
 
 public class StringCalculator {
 
     public int add(String numbers) {
         if (!StringUtils.isBlank(numbers)) {
-            String[] numList = splitNumbers(numbers);
+            String delimiter = ",";
+            if (numbers.matches("//(.*)\n(.*)")) {
+                delimiter = Character.toString(numbers.charAt(2));
+                numbers = numbers.substring(4);
+            }
+
+            String[] numList = splitNumbers(numbers, delimiter + "|\n");
             return sum(numList);
         }
         return 0;
     }
 
-    private String[] splitNumbers(String numbers) {
-        return numbers.split(",");
+    private String[] splitNumbers(String numbers, String delimiter) {
+        return numbers.split(delimiter);
     }
 
 
